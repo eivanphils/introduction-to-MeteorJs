@@ -1,16 +1,17 @@
-if(Meteor.isServer){
+if (Meteor.isServer){
     Meteor.startup(function(){
-        if(Images.find().count() == 0){
-            for(var i=0; i<9; i++){
+        if (Images.find().count() == 0){
+            for (var i=1;i<23;i++){
                 Images.insert(
                     {
-                    img_src: "image_"+i+".png",
-                    img_alt: "imagen de meteor"+i
+                        img_src:"img_"+i+".jpg",
+                        img_alt:"image number "+i
                     }
                 );
-            }//end of for loop
-            console.log("Imagenes registradas: "+i);
-        }//enf if of
-
+            }// end of for insert images
+            // count the images!
+            console.log("startup.js says: "+Images.find().count());
+        }// end of if have no images
     });
+
 }
