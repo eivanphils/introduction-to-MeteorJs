@@ -1,31 +1,33 @@
 Images = new Mongo.Collection("images");
-console.log(Images.find().count());
 
 if (Meteor.isClient) {
-  var img_data = [
-  {
-    img_src: "meteor.png",
-    img_alt: "imagen de meteor"
-  },
-  {
-    img_src: "node.png",
-    img_alt: "imagen de node"
-  },
-  {
-    img_src: "mongodb.png",
-    img_alt: "imagen de mongodb"
-  }
-  ];
 
-  Template.images.helpers({images:img_data});
+//  Template.images.helpers({images:img_data});
+    Template.images.helpers({images:
+        Images.find({},{sort:{rating:1}})
+    });
 
-  Template.images.events({
-    'mouseenter .js-image': function(event){
-      $(event.target).css("width", "50px");
-    }
-  });
-}
+    Template.images.events({
+        //event mouseenter change width to image
+        'mouseenter .js-image': function(event){
+            $(event.target).css("width", "50px");
+        },
+        //event click delete image by id
+        'click .js-del-image': function(event){
+            var image_id = this._id;
+            console.log("Imagen id: "+image_id+" eliminada");
+            $("#"+image_id).hide('slow', function(){
+                Images.remove({"_id":image_id});
+            })
+        },
+        'click .js-rating-image':function(event){
+              var rating = $(event.currentTarget).data("userrating");
+              console.log("log "+rating);
+              var image_id = this.id;
+              console.log(image_id);
 
-if (Meteor.isServer) {
-  console.log("i am the server");
+              Images.update({_id:image_id},
+                            {$set: {rating :rating}});
+        }
+    });
 }

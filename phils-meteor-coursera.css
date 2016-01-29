@@ -1,0 +1,7 @@
+.stars-rating, button.js-del-image.btn.btn-danger {
+    display: block;
+    margin: auto;
+}
+.thumbnail .caption{
+    text-align: center;
+}
