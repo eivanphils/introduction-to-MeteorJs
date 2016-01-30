@@ -1,7 +1,16 @@
+body{
+    padding-top: 60px;
+}
 .stars-rating, button.js-del-image.btn.btn-danger {
     display: block;
     margin: auto;
 }
 .thumbnail .caption{
     text-align: center;
+}
+.thumbnail{
+    height: 500px;
+}
+.thumbnail > image{
+    max-height: 300px;
 }
