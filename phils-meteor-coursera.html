@@ -4,7 +4,7 @@
 
 <body>
 
-<h1>Welcome to coursera!</h1>
+<h1>Welcome to coursera! {{username}}</h1>
 {{> image_add_form}}
 
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -63,7 +63,7 @@
                             {{>starsRating mutable=true class="js-rate-image" id=_id}}
                         </p>
 
-                        <button class="js-del-image btn btn-warning">delete</button>
+                        {{#if currentUser}}<button class="js-del-image btn btn-warning">delete</button>{{/if}}
                     </div>
                 </div>
             </div> <!-- / col -->
